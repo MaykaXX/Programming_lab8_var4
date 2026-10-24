@@ -2,7 +2,7 @@ package cli;
 
 import domain.LoanReceipt;
 
-/** Pure Fabrication: форматування квитанції. */
+/* Pure Fabrication: форматування квитанції. */
 public class ReceiptFormatter {
     public String format(LoanReceipt receipt) {
         return "Квитанція видачі #" + receipt.loanId()

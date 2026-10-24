@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/** Pure Fabrication: сховище в пам'яті з демонстраційними читачами. */
+/* Pure Fabrication: сховище в пам'яті з демонстраційними читачами. */
 public class InMemoryReaderRepository implements ReaderRepository {
     private final Map<String, Reader> readersByName = new HashMap<>();
 

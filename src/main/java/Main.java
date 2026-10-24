@@ -17,12 +17,13 @@ import java.util.Scanner;
 
 public class Main {
 
+
     // Сценарій, який «вводить» користувач у консолі
     private static final String SCRIPTED_SESSION = String.join("\n",
             "1", "Іван Петренко", "Rare",
             "1", "Іван Петренко", "Academic",
             "1", "Іван Петренко", "Standard",
-            "1", "Марія Мельник", "Standard",   // ліміт вичерпано
+            "1", "Марія Мельник", "Standard",
             "1", "Іван Петренко", "Comics",     // невідома категорія
             "1", "Невідомий Читач", "Standard", // читача немає
             "0");

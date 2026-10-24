@@ -21,6 +21,7 @@ public class InMemoryBookCatalog implements BookCatalog {
                 Book.of(104, "Алгоритми та структури даних", BookCategory.ACADEMIC, new BigDecimal("1500.00")));
     }
 
+
     @Override
     public Optional<Book> findFirstByCategory(BookCategory category) {
         return Optional.ofNullable(booksByCategory.get(category));

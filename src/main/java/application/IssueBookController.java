@@ -10,7 +10,7 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.util.List;
 
-/**
+/*
  * Use-Case Controller (GRASP Controller): перший об'єкт після UI.
  * Завантажує сутності, делегує їм бізнес-операцію, зберігає, сповіщає.
  * Не містить ні консольного вводу/виводу, ні обчислень.

@@ -5,7 +5,7 @@ import domain.LoanReceipt;
 
 import java.io.PrintStream;
 
-/** Thin Console UI: меню, виклик контролера, виведення результату. Жодної бізнес-логіки. */
+/* Thin Console UI: меню, виклик контролера, виведення результату. Жодної бізнес-логіки. */
 public class LibraryConsoleUi {
     private final ConsoleCommandParser parser;
     private final IssueBookController controller;
