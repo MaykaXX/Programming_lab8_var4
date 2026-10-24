@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Читач (Rich Domain Model): сам перевіряє ліміт і сам створює видачу (Creator). */
+/* Читач (Rich Domain Model): сам перевіряє ліміт і сам створює видачу (Creator). */
 public final class Reader {
     public static final int MAX_ACTIVE_LOANS = 5;
 
@@ -43,7 +43,7 @@ public final class Reader {
         return activeLoansCount < MAX_ACTIVE_LOANS;
     }
 
-    /** Creator: читач «записує» свої видачі, тому саме він їх створює. */
+    /* Creator: читач «записує» свої видачі, тому саме він їх створює. */
     public Loan borrow(Book book, int days, LocalDate issuedOn) {
         if (!canBorrow()) {
             throw new IllegalStateException("Читач " + name + " вже має " + activeLoansCount
@@ -55,7 +55,7 @@ public final class Reader {
         return loan;
     }
 
-    /** Незмінна копія: зовні колекцію змінити не можна. */
+    /* Незмінна копія: зовні колекцію змінити не можна. */
     public List<Loan> getLoans() {
         return List.copyOf(loans);
     }

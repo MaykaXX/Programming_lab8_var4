@@ -9,6 +9,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 
+
 public class InMemoryBookCatalog implements BookCatalog {
     private final Map<BookCategory, Book> booksByCategory = new EnumMap<>(BookCategory.class);
 
@@ -20,6 +21,7 @@ public class InMemoryBookCatalog implements BookCatalog {
         booksByCategory.put(BookCategory.ACADEMIC,
                 Book.of(104, "Алгоритми та структури даних", BookCategory.ACADEMIC, new BigDecimal("1500.00")));
     }
+
 
     @Override
     public Optional<Book> findFirstByCategory(BookCategory category) {
