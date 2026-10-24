@@ -1,15 +1,17 @@
 package policy;
 
+import java.math.BigDecimal;
+
 public class StandardLoanPolicy implements LoanFeePolicy {
-    private static final double BASE_SERVICE_FEE = 50.0;
+    private static final BigDecimal BASE_SERVICE_FEE = new BigDecimal("50.00");
 
     @Override
-    public double calculateDeposit(double bookValue) {
-        return 0.0;
+    public BigDecimal calculateDeposit(BigDecimal bookValue) {
+        return new BigDecimal("0.00");
     }
 
     @Override
-    public double calculateServiceFee() {
+    public BigDecimal calculateServiceFee() {
         return BASE_SERVICE_FEE;
     }
 }

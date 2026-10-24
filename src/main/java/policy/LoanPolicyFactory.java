@@ -10,8 +10,8 @@ public class LoanPolicyFactory {
     );
 
     public static LoanFeePolicy getPolicy(String category) {
-        if (category == null) {
-            return POLICIES.get("standard");
+        if (category == null || category.isBlank()) {
+            throw new IllegalArgumentException("Категорія книги не може бути порожньою.");
         }
         LoanFeePolicy policy = POLICIES.get(category.trim().toLowerCase());
         if (policy == null) {

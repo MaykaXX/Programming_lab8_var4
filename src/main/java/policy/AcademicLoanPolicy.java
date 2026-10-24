@@ -1,17 +1,20 @@
 package policy;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class AcademicLoanPolicy implements LoanFeePolicy {
-    private static final double DEPOSIT_RATE = 0.20;   // це є 20% від вартості книги
-    private static final double BASE_SERVICE_FEE = 50.0;
-    private static final double ADDITIONAL_FEE = 50.0;
+    private static final BigDecimal DEPOSIT_RATE = new BigDecimal("0.20"); // 20% від вартості
+    private static final BigDecimal BASE_SERVICE_FEE = new BigDecimal("50.00");
+    private static final BigDecimal ADDITIONAL_FEE = new BigDecimal("50.00");
 
     @Override
-    public double calculateDeposit(double bookValue) {
-        return bookValue * DEPOSIT_RATE;
+    public BigDecimal calculateDeposit(BigDecimal bookValue) {
+        return bookValue.multiply(DEPOSIT_RATE).setScale(2, RoundingMode.HALF_UP);
     }
 
     @Override
-    public double calculateServiceFee() {
-        return BASE_SERVICE_FEE + ADDITIONAL_FEE; // 100 грн
+    public BigDecimal calculateServiceFee() {
+        return BASE_SERVICE_FEE.add(ADDITIONAL_FEE); // 100.00 грн
     }
 }

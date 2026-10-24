@@ -1,6 +1,8 @@
 package policy;
 
+import java.math.BigDecimal;
+
 public interface LoanFeePolicy {
-    double calculateDeposit(double bookValue);
-    double calculateServiceFee();
+    BigDecimal calculateDeposit(BigDecimal bookValue);
+    BigDecimal calculateServiceFee();
 }

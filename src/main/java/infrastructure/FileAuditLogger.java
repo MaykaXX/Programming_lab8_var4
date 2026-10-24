@@ -1,9 +1,12 @@
 package infrastructure;
 
-public class FileAuditLogger implements AuditLogger {
+import application.LoanIssuedListener;
+import domain.LoanReceipt;
+
+public class FileAuditLogger implements LoanIssuedListener {
     @Override
-    public void logLoan(int bookId, int readerId) {
-        System.out.println("[Журнал логів] Видачу книги #" + bookId +
-                " читачу #" + readerId + " записано в library_audit.log.");
+    public void onLoanIssued(LoanReceipt receipt) {
+        System.out.println("[Журнал логів] Видачу книги #" + receipt.bookId() +
+                " читачу #" + receipt.readerId() + " записано в library_audit.log.");
     }
 }
