@@ -36,7 +36,6 @@ public class Main {
         demoTask3();
     }
 
-    // ---------- Завдання 2: Information Expert + Creator ----------
     private static void demoTask2() {
         System.out.println("-------- ТЕСТ ЗАВДАННЯ 2 (Information Expert + Creator) --------");
 
@@ -69,7 +68,6 @@ public class Main {
         }
     }
 
-    // ---------- Завдання 3: CLI -> Controller -> Domain ----------
     private static void demoTask3() {
         System.out.println("\n-------- ТЕСТ ЗАВДАННЯ 3 (Controller + Indirection + Pure Fabrication) --------");
         runUi(new Scanner(SCRIPTED_SESSION), true);
