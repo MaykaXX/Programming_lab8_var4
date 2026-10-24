@@ -1,3 +1,4 @@
+import application.IssueBookCommand;
 import application.IssueBookController;
 import application.LoanIssuedListener;
 import cli.ConsoleCommandParser;
@@ -9,6 +10,9 @@ import domain.Reader;
 import infrastructure.InMemoryBookCatalog;
 import infrastructure.InMemoryReaderRepository;
 
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDate;
@@ -17,13 +21,12 @@ import java.util.Scanner;
 
 public class Main {
 
-
     // Сценарій, який «вводить» користувач у консолі
     private static final String SCRIPTED_SESSION = String.join("\n",
             "1", "Іван Петренко", "Rare",
             "1", "Іван Петренко", "Academic",
             "1", "Іван Петренко", "Standard",
-            "1", "Марія Мельник", "Standard",
+            "1", "Марія Мельник", "Standard",   // ліміт вичерпано
             "1", "Іван Петренко", "Comics",     // невідома категорія
             "1", "Невідомий Читач", "Standard", // читача немає
             "0");
@@ -36,6 +39,7 @@ public class Main {
         demoTask2();
         demoTask3();
     }
+
 
     private static void demoTask2() {
         System.out.println("-------- ТЕСТ ЗАВДАННЯ 2 (Information Expert + Creator) --------");

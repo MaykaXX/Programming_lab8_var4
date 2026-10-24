@@ -4,7 +4,6 @@ import policy.LoanFeePolicy;
 import policy.LoanPolicyFactory;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 /** Книга (Rich Domain Model): сама знає, скільки коштує її видача. */
 public final class Book {
@@ -36,11 +35,11 @@ public final class Book {
 
     /** Information Expert: вартість застави знає той, хто володіє вартістю й політикою. */
     public BigDecimal depositFee() {
-        return toMoney(policy.calculateDeposit(valueAmount.doubleValue()));
+        return policy.calculateDeposit(valueAmount);
     }
 
     public BigDecimal serviceFee() {
-        return toMoney(policy.calculateServiceFee());
+        return policy.calculateServiceFee();
     }
 
     public int getId() {
@@ -49,10 +48,5 @@ public final class Book {
 
     public String getTitle() {
         return title;
-    }
-
-    /** Політики працюють з double, а у квитанції гроші з двома знаками після коми. */
-    private static BigDecimal toMoney(double amount) {
-        return BigDecimal.valueOf(amount).setScale(2, RoundingMode.HALF_UP);
     }
 }
