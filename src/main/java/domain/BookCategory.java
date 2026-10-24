@@ -1,6 +1,6 @@
 package domain;
 
-/* Категорія книги. Сама вміє розпізнати себе з тексту (Information Expert для власних імен). */
+/** Категорія книги. Сама вміє розпізнати себе з тексту (Information Expert для власних імен). */
 public enum BookCategory {
     STANDARD, RARE, ACADEMIC;
 

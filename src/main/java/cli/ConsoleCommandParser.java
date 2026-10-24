@@ -5,7 +5,7 @@ import application.IssueBookCommand;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-/** Pure Fabrication: лише зчитує текст із консолі й формує команду. Бізнес-логіки немає. */
+/* Pure Fabrication: лише зчитує текст із консолі й формує команду. Бізнес-логіки немає. */
 public class ConsoleCommandParser {
     private final Scanner in;
     private final PrintStream out;

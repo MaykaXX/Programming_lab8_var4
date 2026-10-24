@@ -17,6 +17,7 @@ import java.util.Scanner;
 
 public class Main {
 
+
     // Сценарій, який «вводить» користувач у консолі
     private static final String SCRIPTED_SESSION = String.join("\n",
             "1", "Іван Петренко", "Rare",

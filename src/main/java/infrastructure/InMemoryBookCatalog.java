@@ -9,7 +9,6 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Optional;
 
-
 public class InMemoryBookCatalog implements BookCatalog {
     private final Map<BookCategory, Book> booksByCategory = new EnumMap<>(BookCategory.class);
 

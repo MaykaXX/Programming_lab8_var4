@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/** Видача книги. Створюється лише всередині домену (метод issue видимий тільки в пакеті). */
+/* Видача книги. Створюється лише всередині домену (метод issue видимий тільки в пакеті). */
 public final class Loan {
     private static final AtomicInteger NEXT_ID = new AtomicInteger(8801);
 

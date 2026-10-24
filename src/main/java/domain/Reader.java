@@ -8,6 +8,7 @@ import java.util.List;
 public final class Reader {
     public static final int MAX_ACTIVE_LOANS = 5;
 
+
     private final int id;
     private final String name;
     private final String ticketNumber;
