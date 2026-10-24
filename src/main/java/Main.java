@@ -1,18 +1,16 @@
 import application.IssueBookCommand;
 import application.IssueBookController;
-import application.LoanIssuedListener;
 import cli.ConsoleCommandParser;
 import cli.LibraryConsoleUi;
 import cli.ReceiptFormatter;
 import domain.Book;
 import domain.BookCategory;
 import domain.Reader;
+import infrastructure.EmailNotificationService;
+import infrastructure.FileAuditLogger;
 import infrastructure.InMemoryBookCatalog;
 import infrastructure.InMemoryReaderRepository;
 
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.LocalDate;
@@ -39,7 +37,6 @@ public class Main {
         demoTask2();
         demoTask3();
     }
-
 
     private static void demoTask2() {
         System.out.println("-------- ТЕСТ ЗАВДАННЯ 2 (Information Expert + Creator) --------");
@@ -79,17 +76,11 @@ public class Main {
     }
 
     private static void runUi(Scanner scanner, boolean echoInput) {
-        // Сповіщення підключаються через інтерфейс LoanIssuedListener (Indirection)
-        LoanIssuedListener auditLog = receipt -> System.out.println("[Журнал логів] Видачу книги #"
-                + receipt.bookId() + " читачу #" + receipt.readerId() + " записано в library_audit.log.");
-        LoanIssuedListener emailReminder = receipt -> System.out.println("[Email] Нагадування надіслано на "
-                + receipt.readerEmail() + " (повернути до " + receipt.dueDate() + ")");
-
-        // Composition Root: тут збираємо всі частини
+        // Composition Root: підключаємо реальні класи FileAuditLogger та EmailNotificationService
         IssueBookController controller = new IssueBookController(
                 new InMemoryReaderRepository(),
                 new InMemoryBookCatalog(),
-                List.of(auditLog, emailReminder),
+                List.of(new FileAuditLogger(), new EmailNotificationService()),
                 Clock.systemDefaultZone());
 
         new LibraryConsoleUi(
