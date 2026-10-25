@@ -1,5 +1,7 @@
 package application;
 
-/* Команда від UI: сирий текст, без бізнес-логіки. */
-public record IssueBookCommand(String readerName, String categoryText) {
+import domain.BookCategory;
+
+/** Команда від UI: ім'я читача й розібрана категорія. Бізнес-логіки немає. */
+public record IssueBookCommand(String readerName, BookCategory category) {
 }

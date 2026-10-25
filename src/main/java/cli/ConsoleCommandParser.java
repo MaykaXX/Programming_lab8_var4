@@ -1,40 +1,38 @@
 package cli;
 
 import application.IssueBookCommand;
+import domain.BookCategory;
 
 import java.io.PrintStream;
 import java.util.Scanner;
 
-/* Pure Fabrication: лише зчитує текст із консолі й формує команду. Бізнес-логіки немає. */
+/** Pure Fabrication: зчитує текстові команди зі Scanner і формує команду. Бізнес-логіки немає. */
 public class ConsoleCommandParser {
     private final Scanner in;
     private final PrintStream out;
-    private final boolean echoInput;
 
-    public ConsoleCommandParser(Scanner in, PrintStream out, boolean echoInput) {
+    public ConsoleCommandParser(Scanner in, PrintStream out) {
         this.in = in;
         this.out = out;
-        this.echoInput = echoInput;
     }
 
+    /** Кінець введення трактується як вихід із програми. */
     public String readMenuChoice() {
         out.print("Ваш вибір: ");
-        return nextLine();
+        return in.hasNextLine() ? in.nextLine().trim() : "0";
     }
 
     public IssueBookCommand readIssueBookCommand() {
-        out.print("Введіть ім'я читача: ");
-        String name = nextLine();
-        out.print("Введіть категорію книги (Standard/Rare/Academic): ");
-        String category = nextLine();
-        return new IssueBookCommand(name, category);
+        String name = ask("Введіть ім'я читача: ");
+        String category = ask("Введіть категорію книги (Standard/Rare/Academic): ");
+        return new IssueBookCommand(name, BookCategory.parse(category));
     }
 
-    private String nextLine() {
-        String line = in.hasNextLine() ? in.nextLine().trim() : "0";
-        if (echoInput) {
-            out.println(line);
+    private String ask(String prompt) {
+        out.print(prompt);
+        if (!in.hasNextLine()) {
+            throw new IllegalStateException("Введення завершено, команду не отримано.");
         }
-        return line;
+        return in.nextLine().trim();
     }
 }

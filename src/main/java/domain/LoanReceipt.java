@@ -3,7 +3,7 @@ package domain;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-/* Незмінна квитанція (DTO): все, що потрібно зовнішнім шарам, без доступу до внутрішніх об'єктів. */
+/** Незмінна квитанція (DTO): усе, що потрібно зовнішнім шарам, без доступу до внутрішніх об'єктів. */
 public record LoanReceipt(
         int loanId,
         int readerId,

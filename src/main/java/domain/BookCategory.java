@@ -1,8 +1,30 @@
 package domain;
 
-/** Категорія книги. Сама вміє розпізнати себе з тексту (Information Expert для власних імен). */
+import domain.policy.LoanFee;
+import domain.policy.LoanFeePolicy;
+import domain.policy.LoanPolicies;
+
+import java.math.BigDecimal;
+
+/**
+ * Категорія книги. Кожна константа несе власну політику (Polymorphism): каскаду if/else немає,
+ * а нова категорія без політики просто не скомпілюється (Protected Variations).
+ */
 public enum BookCategory {
-    STANDARD, RARE, ACADEMIC;
+    STANDARD(LoanPolicies.STANDARD),
+    RARE(LoanPolicies.RARE),
+    ACADEMIC(LoanPolicies.ACADEMIC);
+
+    private final LoanFeePolicy policy;
+
+    BookCategory(LoanFeePolicy policy) {
+        this.policy = policy;
+    }
+
+    /** Делегування політиці: зовні політику не видно (Закон Деметри). */
+    public LoanFee feeFor(BigDecimal bookValue) {
+        return policy.feeFor(bookValue);
+    }
 
     public static BookCategory parse(String text) {
         if (text == null || text.isBlank()) {

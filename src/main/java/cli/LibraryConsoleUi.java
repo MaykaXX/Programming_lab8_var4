@@ -5,18 +5,15 @@ import domain.LoanReceipt;
 
 import java.io.PrintStream;
 
-/* Thin Console UI: меню, виклик контролера, виведення результату. Жодної бізнес-логіки. */
+/** Thin Console UI: меню, виклик контролера, виведення результату. Жодної бізнес-логіки. */
 public class LibraryConsoleUi {
     private final ConsoleCommandParser parser;
     private final IssueBookController controller;
-    private final ReceiptFormatter formatter;
     private final PrintStream out;
 
-    public LibraryConsoleUi(ConsoleCommandParser parser, IssueBookController controller,
-                            ReceiptFormatter formatter, PrintStream out) {
+    public LibraryConsoleUi(ConsoleCommandParser parser, IssueBookController controller, PrintStream out) {
         this.parser = parser;
         this.controller = controller;
-        this.formatter = formatter;
         this.out = out;
     }
 
@@ -39,9 +36,19 @@ public class LibraryConsoleUi {
     private void issueBook() {
         try {
             LoanReceipt receipt = controller.issueBook(parser.readIssueBookCommand());
-            out.println(formatter.format(receipt));
+            out.println(format(receipt));
         } catch (IllegalArgumentException | IllegalStateException e) {
             out.println("Помилка: " + e.getMessage());
         }
+    }
+
+    private String format(LoanReceipt receipt) {
+        return "Квитанція видачі #" + receipt.loanId()
+                + "\nЧитач: " + receipt.readerName() + " (" + receipt.ticketNumber() + ")"
+                + "\nКнига: " + receipt.bookTitle()
+                + "\nЗастава: " + receipt.depositFee() + " грн"
+                + "\nСервісний збір: " + receipt.serviceFee() + " грн"
+                + "\nРазом: " + receipt.totalPayable() + " грн"
+                + "\nДата повернення: " + receipt.dueDate();
     }
 }
