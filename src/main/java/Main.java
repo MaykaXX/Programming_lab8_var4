@@ -1,5 +1,3 @@
-package app;
-
 import application.IssueBookController;
 import application.LoanIssuer;
 import cli.ConsoleCommandParser;
